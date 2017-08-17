@@ -4,16 +4,19 @@ Now it's time to split into teams and get to work.
 ### Step 1
 #### Front-end
 In the `admin.html` file, under the setName function, write a function to POST todos calles setTodo. Your new POST request should have the path `'/todo'`. You can copy past the setName function to get you started. Make sure you change the object that you are sending to the server to look like this:
+
 ```
 var newTask = {
-          task: $("#task").val(),
-        }
-      ```
+          task: $("#task").val()
+}
+```
 
 Be sure to add an action listener that calls this function when you click the todo plus sign
+
 ```
 $("#task").on('keyup', setTodo);
 ```
+
 #### Back-end
 In the `apiRoutes.js` file, underneath the `app.post('/name'...)` route, add a new POST route. You can copy paste the `app.post('/name'...)` route to get you started. The path for your new route should be `'/todo'`.
 
@@ -35,6 +38,7 @@ In the `apiRoutes.js` file, underneath the `app.get('/name'...)` route, add a ne
 ### Step 4
 
 Work together to ensure that you are able to console.log out the data from the database. Once you have the data being passed to the client, iterate through the array of todo objects and add the following code:
+
 ```
  $("#todos").append('<button type="button" class="list-group-item todoitem" data-id="' + data[i].id + '">' + data[i].task + '</button>');
  ```

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homie Admin</title>
+
+  <!-- Latest compiled and minified CSS & JS for Bootstrap and jQuery -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- Moment.js for formatting time using Javascript -->
+  <script src="http://momentjs.com/downloads/moment.js"></script>
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Font Awesome Glyphicons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html"><i class="fa fa-home"></i> Back to home</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid wrapper-admin">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">User Name</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="list-group" id="name">
+            </div>
+          </div>
+        </div>
+        <h4 class="plus" id="addName">+</h4>
+        <div class="form-group" id="user-form">
+          <input type="text" placeholder="name" class="form-control" id="usr-name">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Todo list</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="list-group" id="todos">
+            </div>
+          </div>
+        </div>
+        <h4 class="plus" id="addTodo">+</h4>
+        <div class="form-group" id="todo-form">
+          <input type="text" placeholder="task" class="form-control" id="task">
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Links</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="list-group" id="links">
+            </div>
+          </div>
+        </div>
+        <h4 class="plus" id="addLink">+</h4>
+        <div class="form-group" id="link-form">
+          <input type="text" placeholder="link name" class="form-control" id="link-name">
+          <input type="text" placeholder="url" class="form-control" id="url">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom JS -->
+  <script src="app.js"></script>
+  <script type="text/javascript">
+    /*------------------------
+      Post Requests
+    --------------------------*/
+
+    function setName(e) {
+      if (e.keyCode == 13) {
+        var newName = {
+          userName: $("#usr-name").val(),
+        }
+        $.post('/name', newName, function (data) {
+          hideForm();
+          getName();
+        });
+
+      }
+    }
+
+    $("#usr-name").on('keyup', setName);
+
+    /*------------------------
+      Get Requests
+    --------------------------*/
+    function getName() {
+      $.get("/name", function (data) {
+        $("#name").empty();
+        $("#name").append('<button type="button" class="list-group-item nameitem" data-id="' + data[0].id + '">' + data[0].userName + '</button>');
+      });
+    }
+
+    getName();
+
+    /*------------------------
+      Delete Requests
+    --------------------------*/
+  </script>
+</body>
+
+</html>

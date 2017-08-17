@@ -1,0 +1,26 @@
+DROP DATABASE IF EXISTS homie;
+CREATE database homie;
+
+USE homie;
+
+CREATE TABLE users (
+    id INT NOT NULL AUTO_INCREMENT,
+    userName VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE todo (
+    id INT NOT NULL AUTO_INCREMENT,
+    userId INT NOT NULL,
+    task VARCHAR(100) NOT NULL,
+    completed BOOLEAN NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE link (
+  id INT NOT NULL AUTO_INCREMENT,
+  userId INT NOT NULL,
+  linkName VARCHAR(100) NOT NULL,
+  url VARCHAR(100) NOT NULL,
+  PRIMARY KEY (id)
+);

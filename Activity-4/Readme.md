@@ -3,7 +3,7 @@ Now it's time to split into teams and get to work.
 
 ### Step 1
 #### Front-end
-In the `admin.html` file, under the setName function, write a function to POST todos calles setTodo. Your new POST request should have the path `'/todo'`. You can copy past the setName function to get you started. Make sure you change the object that you are sending to the server to look like this:
+In the `admin.html` file, under the setName function, write a function to POST todos calles setTodo. Your new POST request should have the path `'/todo'`. You can copy paste the setName function to get you started. Make sure you change the object that you are sending to the server to look like this:
 
 ```
 var newTask = {

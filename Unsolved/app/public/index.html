@@ -48,7 +48,7 @@
   <div class="container-fluid wrapper">
     <div class="jumbotron mainstage">
       <h1 class="time">--:--</h1>
-      <p id="userHello">Hello!</p>
+      <p id="userHello"></p>
     </div>
   </div>
 
@@ -60,7 +60,14 @@
     /*------------------------
       Get Requests
     --------------------------*/
+function getName() {
+      $.get("/name", function (data) {
+        $("#name").empty();
+        $("#userHello").append('Hello ' + data[0].userName);
+      });
+    }
 
+    getName();
     /*------------------------
       Put Requests
     --------------------------*/
